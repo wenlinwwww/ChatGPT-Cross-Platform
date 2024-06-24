@@ -5,6 +5,7 @@ import styles from "./home.module.scss";
 import { IconButton } from "./button";
 import SettingsIcon from "../icons/settings.svg";
 import GithubIcon from "../icons/github.svg";
+import InstructionIcon from "../icons/instruction.svg";
 import ChatGptIcon from "../icons/chatgpt.svg";
 import AddIcon from "../icons/add.svg";
 import CloseIcon from "../icons/close.svg";
@@ -25,6 +26,7 @@ import {
   NARROW_SIDEBAR_WIDTH,
   Path,
   REPO_URL,
+  INST_URL,
 } from "../constant";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -174,7 +176,7 @@ export function SideBar(props: { className?: string }) {
     >
       <div className={styles["sidebar-header"]} data-tauri-drag-region>
         <div className={styles["sidebar-title"]} data-tauri-drag-region>
-          NextChat
+          ChatGPT
         </div>
         <div className={styles["sidebar-sub-title"]}>
           Build your own AI assistant.
@@ -264,8 +266,8 @@ export function SideBar(props: { className?: string }) {
             </Link>
           </div>
           <div className={styles["sidebar-action"]}>
-            <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
-              <IconButton icon={<GithubIcon />} shadow />
+            <a href={INST_URL} target="_blank" rel="noopener noreferrer">
+              <IconButton icon={<InstructionIcon />} shadow />
             </a>
           </div>
         </div>
