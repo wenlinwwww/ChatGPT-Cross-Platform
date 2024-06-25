@@ -7,15 +7,26 @@ import { useAccessStore } from "../store";
 import Locale from "../locales";
 
 import BotIcon from "../icons/bot.svg";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getClientConfig } from "../config/client";
+
+const codeEnv = process.env.CODE;
 
 export function AuthPage() {
   const navigate = useNavigate();
   const accessStore = useAccessStore();
+  const [error, setError] = useState("");
 
   const goHome = () => navigate(Path.Home);
-  const goChat = () => navigate(Path.Chat);
+  // const goChat = () => navigate(Path.Chat);
+  const goChat = () => {
+    // check whether the input code match env code
+    if (accessStore.accessCode === codeEnv) {
+      navigate(Path.Chat);
+    } else {
+      setError("密码错误");
+    }
+  };
   const resetAccessCode = () => {
     accessStore.update((access) => {
       access.openaiApiKey = "";
@@ -77,6 +88,8 @@ export function AuthPage() {
           />
         </>
       ) : null}
+
+      {error && <div className={styles["auth-error"]}>{error}</div>}
 
       <div className={styles["auth-actions"]}>
         <IconButton
