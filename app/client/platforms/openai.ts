@@ -570,6 +570,7 @@ export class ChatGPTApi implements LLMApi {
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
     const startDate = formatDate(startOfMonth);
     const endDate = formatDate(new Date(Date.now() + ONE_DAY));
+    console.log("check for date:", startDate, endDate);
 
     const [used, subs] = await Promise.all([
       fetch(
